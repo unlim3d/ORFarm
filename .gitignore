@@ -1,0 +1,6 @@
+/node_modules
+/routing/node_modules
+/routing/package-lock.json
+/routing/.idea
+/Site
+/.idea
