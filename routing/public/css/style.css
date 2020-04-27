@@ -20,6 +20,9 @@
     display: block;
 }
 #table .save_btn{
-    width: 100%;
+    width: 90%;
     height: 2em;
+}
+#table .text{
+    width: 90%;
 }
