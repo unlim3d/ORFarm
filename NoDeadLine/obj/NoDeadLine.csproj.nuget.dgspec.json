@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\DeadlineRepository10\\Node\\NoDeadLine\\NoDeadLine.csproj": {}
+    "C:\\Megarender-full\\NoDeadLine\\NoDeadLine.csproj": {}
   },
   "projects": {
-    "C:\\DeadlineRepository10\\Node\\NoDeadLine\\NoDeadLine.csproj": {
+    "C:\\Megarender-full\\NoDeadLine\\NoDeadLine.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\DeadlineRepository10\\Node\\NoDeadLine\\NoDeadLine.csproj",
+        "projectUniqueName": "C:\\Megarender-full\\NoDeadLine\\NoDeadLine.csproj",
         "projectName": "NoDeadLine",
-        "projectPath": "C:\\DeadlineRepository10\\Node\\NoDeadLine\\NoDeadLine.csproj",
+        "projectPath": "C:\\Megarender-full\\NoDeadLine\\NoDeadLine.csproj",
         "packagesPath": "C:\\Users\\V1\\.nuget\\packages\\",
-        "outputPath": "C:\\DeadlineRepository10\\Node\\NoDeadLine\\obj\\",
+        "outputPath": "C:\\Megarender-full\\NoDeadLine\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\V1\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -40,7 +40,7 @@ const BuildPage = function () {
 
             const button_save = document.createElement('button');
             button_save.setAttribute('class', 'save_btn');
-            button_save.innerText = 'Set save path';
+            button_save.innerText = 'Папка для сбора финальных рендеров со слоями';
             button_save.onclick = () => MakeProgramRequest({name: 'SetRenderFolder', body: {sequence: sequences[i], path: text_field_path.value}});
             td.appendChild(button_save);
 
@@ -98,7 +98,7 @@ const BuildPage = function () {
 };
 
 const MakeProgramRequest = async function(options){
-    const address = 'http://localhost:8090';
+    const address = 'http://nodeadline.mykeenetic.com:8090';
     const xhr = new XMLHttpRequest();
 
     options.method = options.method || 'POST';

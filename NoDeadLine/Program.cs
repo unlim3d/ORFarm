@@ -28,6 +28,7 @@ class Program
    static int iteration = 10;
          static void Main(string[] args)
     {
+        Installer.CheckNodeInstalled();
         Jobs = new List<Job>();
         //  _threads = new List<Thread>();
       //      Threads.TestThreads();
