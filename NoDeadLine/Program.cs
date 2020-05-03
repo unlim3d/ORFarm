@@ -10,13 +10,34 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Buffers;
+using System.Dynamic;
 
 class Program
 {
-    
-    public const string DeadLineReportFolder =@"c:\DeadlineRepository10\reports\slaves\";
+
+    public static string DeadLineReportFolder
+    {
+        get
+        {
+            string pathRootUp = FarmSettings.Root.Replace("\\ORFarm", "");
+            string path = Path.Combine(pathRootUp, "reports");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+                path = Path.Combine(path, "slaves");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                    return path;
+                }
+            }
+            string pathExist= Path.Combine(path, "slaves");
+            return pathExist;
+        }
+    }
+    //=@"c:\DeadlineRepository10\reports\slaves\";
     public static string FFMPEG = @"c:\DeadlineRepository10\Node\FFMPEG\ffmpeg.exe ";
-    public static string NodeWWW = @"c:\DeadlineRepository10\Node\Site\";
+    public static string NodeWWW = FarmSettings.SitePath;//@"c:\DeadlineRepository10\Node\Site\";
     public static List<RenderTask> tasks;
     public static float Counts = 0;
     public static int ChangedCountFiles = 0;
