@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "NoDeadLine": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\ORFarm",
+      "nativeDebugging": true
+    }
+  }
+}

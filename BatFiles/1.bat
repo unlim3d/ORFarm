@@ -1,0 +1,1 @@
+start "NodeRenderFarmService" Node "c:\ORFarm\server.js"

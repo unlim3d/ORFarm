@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using ICSharpCode.SharpZipLib.BZip2;
 using System.Net;
 using System.Diagnostics;
 using System.Text.Json;

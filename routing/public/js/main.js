@@ -90,15 +90,16 @@ const BuildPage = function () {
             }
         }
     }else{
-        const div_no_files = document.createElement('div');
-        div_no_files.setAttribute('class', 'attention no_files');
-        div_no_files.innerText = 'You don\'t have any rendered files.';
-        table.parentElement.appendChild(div_no_files);
+
+         const div_no_files = document.createElement('div');
+         div_no_files.setAttribute('class', 'attention no_files');
+         div_no_files.innerText = 'Добавьте новый путь рендера файлов для сбора информации.';
+         table.parentElement.appendChild(div_no_files);
     }
 };
 
 const MakeProgramRequest = async function(options){
-    const address = 'http://nodeadline.mykeenetic.com:8090';
+    const address = window.location.href.split(':').slice(0, 2).join(':') + ':8090';
     const xhr = new XMLHttpRequest();
 
     options.method = options.method || 'POST';
