@@ -11,28 +11,52 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Buffers;
 using System.Dynamic;
+using NoDeadLine;
 
 class Program
 {
 
+    public static string DeadLineReportFolderSlaves
+    {
+        get
+        {
+            string path = Path.Combine(DeadLineReportFolder, "slaves");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+                return path;
+            }
+            
+            return path;
+        }
+    }
+    public static string DeadLineReportFolderWin
+    {
+        get
+        {
+            string path = Path.Combine(DeadLineReportFolder, "win");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+                return path;
+            }
+
+            return path;
+        }
+    }
     public static string DeadLineReportFolder
     {
         get
         {
-            string pathRootUp = FarmSettings.Root.Replace("\\ORFarm", "");
-            string path = Path.Combine(pathRootUp, "reports");
+
+            string pathRoot = FarmSettings.Root;
+            string path = Path.Combine(pathRoot, "reports");
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
-                path = Path.Combine(path, "slaves");
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                    return path;
-                }
             }
-            string pathExist= Path.Combine(path, "slaves");
-            return pathExist;
+            
+            return path;
         }
     }
     //=@"c:\DeadlineRepository10\reports\slaves\";
@@ -48,6 +72,10 @@ class Program
    static int iteration = 10;
          static void Main(string[] args)
     {
+        
+        HardwareInfo hardware=new HardwareInfo();
+        hardware.StartCmd();
+
         Installer.CheckNodeInstalled();
         StartUp.GetStarted();
         Jobs = new List<Job>();
