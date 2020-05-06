@@ -6,7 +6,8 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
-
+using System.Text.Json;
+using System.Text.Json.Serialization;
 public abstract class HttpRequestHandler
 {
     
@@ -57,6 +58,14 @@ public abstract class HttpRequestHandler
         body.Close();
         reader.Close();
         // If you are finished with the request, it should be closed also.
+       
+       // обработчик изменения пути к рендерам. 
+        if (s.Contains("Add_Directory"))
+        {
+            string str = s.Substring(s.IndexOf(":"),s.Length);
+
+        }
+      
         return s;
     }
 }
