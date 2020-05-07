@@ -2,6 +2,8 @@
 /web_server/package-lock.json
 /web_server/.idea
 /web_server/Site
+/NoDeadLine/obj
+/NoDeadLine/bin
 /.idea
 *.dll
 *.pdb
