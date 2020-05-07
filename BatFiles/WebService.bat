@@ -1,4 +1,3 @@
- 
 :st
 set process1="deadlinewebservice.exe"
 set process2="Node.exe"
@@ -19,9 +18,9 @@ set res3=%errorlevel%
 
 if %res1% EQU 1 ( 
  
- start "DeadLineWebService" "c:\Program Files\Thinkbox\Deadline10\bin\deadlinewebservice.exe"
 taskkill /f /im node.exe
  
+start "DeadLineWebService" "c:\Program Files\Thinkbox\Deadline10\bin\deadlinewebservice.exe"
 
  
  
@@ -43,7 +42,7 @@ if %res3% EQU 1 (
  
  
  
- timeout /t 60
+ timeout /t 10
 
 goto :st
 exit

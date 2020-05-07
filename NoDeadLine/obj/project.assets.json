@@ -79,19 +79,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Professional\\.nuget\\packages\\": {}
+    "C:\\Users\\KosKokos\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Professional\\Documents\\GitHub\\ORFarm\\NoDeadLine\\NoDeadLine.csproj",
+      "projectUniqueName": "C:\\ORFarmNOUT\\NoDeadLine\\NoDeadLine.csproj",
       "projectName": "NoDeadLine",
-      "projectPath": "C:\\Users\\Professional\\Documents\\GitHub\\ORFarm\\NoDeadLine\\NoDeadLine.csproj",
-      "packagesPath": "C:\\Users\\Professional\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Professional\\Documents\\GitHub\\ORFarm\\NoDeadLine\\obj\\",
+      "projectPath": "C:\\ORFarmNOUT\\NoDeadLine\\NoDeadLine.csproj",
+      "packagesPath": "C:\\Users\\KosKokos\\.nuget\\packages\\",
+      "outputPath": "C:\\ORFarmNOUT\\NoDeadLine\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Professional\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\KosKokos\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
