@@ -10,58 +10,13 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Buffers;
-using System.Dynamic;
-using NoDeadLine;
 
 class Program
 {
-
-    public static string DeadLineReportFolderSlaves
-    {
-        get
-        {
-            string path = Path.Combine(DeadLineReportFolder, "slaves");
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-                return path;
-            }
-            
-            return path;
-        }
-    }
-    public static string DeadLineReportFolderWin
-    {
-        get
-        {
-            string path = Path.Combine(DeadLineReportFolder, "win");
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-                return path;
-            }
-
-            return path;
-        }
-    }
-    public static string DeadLineReportFolder
-    {
-        get
-        {
-
-            string pathRoot = FarmSettings.Root;
-            string path = Path.Combine(pathRoot, "reports");
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-            
-            return path;
-        }
-    }
-    //=@"c:\DeadlineRepository10\reports\slaves\";
+    
+    public const string DeadLineReportFolder =@"c:\DeadlineRepository10\reports\slaves\";
     public static string FFMPEG = @"c:\DeadlineRepository10\Node\FFMPEG\ffmpeg.exe ";
-    public static string NodeWWW = FarmSettings.SitePath;//@"c:\DeadlineRepository10\Node\Site\";
+    public static string NodeWWW = @"c:\DeadlineRepository10\Node\Site\";
     public static List<RenderTask> tasks;
     public static float Counts = 0;
     public static int ChangedCountFiles = 0;
@@ -72,10 +27,6 @@ class Program
    static int iteration = 10;
          static void Main(string[] args)
     {
-        
-        HardwareInfo hardware=new HardwareInfo();
-        hardware.StartCmd();
-
         Installer.CheckNodeInstalled();
         StartUp.GetStarted();
         Jobs = new List<Job>();
