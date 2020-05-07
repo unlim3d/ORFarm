@@ -1,9 +1,4 @@
-
-
-
-
-
-    let Job
-    {
-        RenderPath:String
-    }
+let Job
+{
+    RenderPath:String
+}

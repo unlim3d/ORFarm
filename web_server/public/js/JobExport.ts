@@ -1,5 +1,3 @@
-
-
 import fs = require('fs');
 import * as path from "path";
 const Export = function (RenderPath: string )

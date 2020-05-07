@@ -99,12 +99,6 @@ const Wait = function (timeout) {
     });
 };
 
-const video_test = document.createElement('video');
-video_test.autoplay = false;
-video_test.muted = true;
-video_test.loop = true;
-video_test.src = 'http://127.0.0.1:8089/files?filename=Storage_v2_..mov';
-
 const MakeProgramRequest = async function(options){
     const address = 'http://localhost:8090';
     const xhr = new XMLHttpRequest();
