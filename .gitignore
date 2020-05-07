@@ -4,7 +4,7 @@
 /routing/.idea
 /Site
 /.idea
-/.suo
-/.dll
-/.pdb
-/.cache
+*.dll
+*.pdb
+*.suo
+*.cache

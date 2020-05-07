@@ -10,9 +10,12 @@ public class StartUp
 
     public static void GetStarted()
     {
+        FarmSettings.RootPath();
+
         CopyAddDirectoryImage();
         GetNetworkPoolInfo();
 
+        HardwareInfoStartUp();
     }
 
     private static void GetNetworkPoolInfo()
