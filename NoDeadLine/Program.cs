@@ -76,6 +76,9 @@ class Program
         HardwareInfo hardware=new HardwareInfo();
         hardware.StartCmd();
 
+       NetworkInfo network=new NetworkInfo();
+       network.SaveFromCmd();
+
         Installer.CheckNodeInstalled();
         StartUp.GetStarted();
         Jobs = new List<Job>();
