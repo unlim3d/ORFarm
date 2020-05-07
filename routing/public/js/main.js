@@ -1,3 +1,5 @@
+var msg = require('./JobExport.js');
+
 const BuildPage = function () {
     let files = JSON.parse(document.getElementById('files').textContent);
 
@@ -34,17 +36,19 @@ const BuildPage = function () {
 
             const text_field_path = document.createElement('input');
             text_field_path.setAttribute('type', 'text');
-            text_field_path.setAttribute('placeholder', 'Введите путь к рендерам...');
+            text_field_path.setAttribute('placeholder', 'Enter path...');
             text_field_path.setAttribute('class', 'text path');
             td.appendChild(text_field_path);
 
-
             const button_save = document.createElement('button');
             button_save.setAttribute('class', 'save_btn');
-            button_save.innerText = 'Применить';
-            button_save.onclick = () => MakeProgramRequest({name: 'SetRenderFolder', body: {sequence: sequences[i], path: text_field_path.value}});
+            button_save.innerText = 'Папка для сбора финальных рендеров со слоями';
+            button_save.onclick = () =>{
+                MakeProgramRequest({name: 'SetRenderFolder', body: {sequence: sequences[i], path: text_field_path.value}});
+                JobExport(text_field_path.value);
+            }
             td.appendChild(button_save);
-
+ 
 
             const text_field_collect_path = document.createElement('input');
             text_field_collect_path.setAttribute('type', 'text');
@@ -59,7 +63,6 @@ const BuildPage = function () {
             button_save_collect_path.onclick = () => MakeProgramRequest({name: 'SetCollectFolder', body: {sequence: sequences[i], path:  text_field_collect_path.value}});
             td.appendChild(button_save_collect_path);
 
-           
 
             tr.appendChild(td);
             table.appendChild(tr);

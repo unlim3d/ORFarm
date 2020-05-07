@@ -10,11 +10,14 @@ public class StartUp
     public static void GetStarted()
     {
         CopyAddDirectoryImage();
-
+        GetNetworkPoolInfo();
 
     }
 
-
+private static void GetNetworkPoolInfo()
+    {
+        
+    }
 
 private static void CopyAddDirectoryImage()
     {

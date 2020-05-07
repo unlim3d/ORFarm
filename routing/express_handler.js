@@ -10,6 +10,7 @@ const ReadRenderedFiles = async function (req, res){
 
     const postfix_length = 4;
 
+    //
     let files = await utils.GetFiles(config.files_path);
     if (files[0]){
         res.render(config.views_path + 'main', {files: JSON.stringify(files)});

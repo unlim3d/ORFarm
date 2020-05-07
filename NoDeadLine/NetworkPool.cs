@@ -6,7 +6,7 @@ using System.IO;
 using System.Net;
 public class NetworkPool
 {
-	public NetworkPool()
+	public  NetworkPool()
 	{
 	 
 			string hostName = Dns.GetHostName(); // Retrive the Name of HOST  
@@ -14,7 +14,7 @@ public class NetworkPool
 		// Get the IP  
 			IPAdress = Dns.GetHostByName(hostName).AddressList[0].ToString();
 			Console.WriteLine("this machine IP Address is :" + IPAdress);
-			Console.ReadKey();
+			SaveJSON(this);
 		 
 	}
 	public string DNS;
