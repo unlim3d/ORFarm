@@ -1,5 +1,3 @@
-var msg = require('./JobExport.js');
-
 const BuildPage = function () {
     let files = JSON.parse(document.getElementById('files').textContent);
 
@@ -34,35 +32,11 @@ const BuildPage = function () {
                 td.appendChild(video);
             }
 
-            const text_field_path = document.createElement('input');
-            text_field_path.setAttribute('type', 'text');
-            text_field_path.setAttribute('placeholder', 'Enter path...');
-            text_field_path.setAttribute('class', 'text path');
-            td.appendChild(text_field_path);
-
             const button_save = document.createElement('button');
             button_save.setAttribute('class', 'save_btn');
-            button_save.innerText = 'Папка для сбора финальных рендеров со слоями';
-            button_save.onclick = () =>{
-                MakeProgramRequest({name: 'SetRenderFolder', body: {sequence: sequences[i], path: text_field_path.value}});
-                JobExport(text_field_path.value);
-            }
+            button_save.innerText = 'Set save path';
+            button_save.onclick = () => MakeProgramRequest({name: 'SetRenderFolder', body: {sequence: sequences[i]}});
             td.appendChild(button_save);
- 
-
-            const text_field_collect_path = document.createElement('input');
-            text_field_collect_path.setAttribute('type', 'text');
-            text_field_collect_path.setAttribute('placeholder', 'Куда складировать результаты...');
-            text_field_collect_path.setAttribute('class', 'text path');
-            td.appendChild(text_field_collect_path);
-
-
-            const button_save_collect_path = document.createElement('button');
-            button_save_collect_path.setAttribute('class', 'save_btn');
-            button_save_collect_path.innerText = 'Применить';
-            button_save_collect_path.onclick = () => MakeProgramRequest({name: 'SetCollectFolder', body: {sequence: sequences[i], path:  text_field_collect_path.value}});
-            td.appendChild(button_save_collect_path);
-
 
             tr.appendChild(td);
             table.appendChild(tr);
@@ -110,16 +84,42 @@ const BuildPage = function () {
             }
         }
     }else{
-
-         const div_no_files = document.createElement('div');
-         div_no_files.setAttribute('class', 'attention no_files');
-         div_no_files.innerText = 'Добавьте новый путь рендера файлов для сбора информации.';
-         table.parentElement.appendChild(div_no_files);
+        const div_no_files = document.createElement('div');
+        div_no_files.setAttribute('class', 'attention no_files');
+        div_no_files.innerText = 'You don\'t have any rendered files.';
+        table.parentElement.appendChild(div_no_files);
     }
 };
 
+const Wait = function (timeout) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, timeout);
+    });
+};
+
+const video_test = document.createElement('video');
+video_test.autoplay = false;
+video_test.muted = true;
+video_test.loop = true;
+video_test.src = 'http://127.0.0.1:8089/files?filename=Storage_v2_..mov';
+
+const GetVideoFrame = function (video, options = {}){
+    const canvas = document.createElement('canvas');
+    options.width = options.width || video.videoWidth;
+    options.height = video.videoHeight * options.width / video.videoWidth;
+    canvas.height = options.height;
+    canvas.width = options.width;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const img = new Image();
+    img.src = canvas.toDataURL();
+    return img;
+};
+
 const MakeProgramRequest = async function(options){
-    const address = window.location.href.split(':').slice(0, 2).join(':') + ':8090';
+    const address = 'http://localhost:8090';
     const xhr = new XMLHttpRequest();
 
     options.method = options.method || 'POST';
@@ -137,6 +137,52 @@ const MakeProgramRequest = async function(options){
     xhr.send(JSON.stringify(options.body));
 };
 
-$(document).ready(() => {
-    BuildPage();
+const GetVideoDuration = function(file){
+    return new Promise((resolve) => {
+        const video = document.createElement('video');
+        video.preload = 'metadata';
+
+        video.onloadedmetadata = function() {
+            window.URL.revokeObjectURL(video.src);
+            const duration = video.duration;
+            resolve(duration);
+        }
+
+        video.src = URL.createObjectURL(file);;
+    });
+};
+
+$(document).ready(async function() {
+    //BuildPage();
+
+    $('#seconds_field').change(() =>{
+        video_test.currentTime = parseFloat($('#seconds_field').val());
+        video_test.play();
+    });
+
+    video_test.ontimeupdate = () => {
+        const image = GetVideoFrame();
+        $('img')[0].src = image.src;
+        $('a[download="filename.png"]').attr('href', image.src);
+    };
+
+    $('#video_input').change(async function (e){
+        const file = $('#video_input')[0].files[0];
+        const duration = await GetVideoDuration(file);
+        const sliced_file = file.slice(0, file.size / duration / 2);
+        const url = URL.createObjectURL(sliced_file);
+        const video = document.createElement('video');
+        video.autoplay = false;
+        video.muted = true;
+        video.loop = true;
+        video.src = url;
+        video.onloadeddata = () => {
+            video.currentTime = 0;
+            video.onseeked = () => {
+                const frame = GetVideoFrame(video, {width: 480});
+                $('#frames_container')[0].appendChild(frame);
+                URL.revokeObjectURL(url);
+            };
+        };
+    });
 });
