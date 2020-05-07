@@ -79,19 +79,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\V1\\.nuget\\packages\\": {}
+    "C:\\Users\\Professional\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "r:\\JopaFarm\\ORFarm\\NoDeadLine\\NoDeadLine.csproj",
+      "projectUniqueName": "C:\\Users\\Professional\\WebstormProjects\\ORFarm\\NoDeadLine\\NoDeadLine.csproj",
       "projectName": "NoDeadLine",
-      "projectPath": "r:\\JopaFarm\\ORFarm\\NoDeadLine\\NoDeadLine.csproj",
-      "packagesPath": "C:\\Users\\V1\\.nuget\\packages\\",
-      "outputPath": "r:\\JopaFarm\\ORFarm\\NoDeadLine\\obj\\",
+      "projectPath": "C:\\Users\\Professional\\WebstormProjects\\ORFarm\\NoDeadLine\\NoDeadLine.csproj",
+      "packagesPath": "C:\\Users\\Professional\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Professional\\WebstormProjects\\ORFarm\\NoDeadLine\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\V1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Professional\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
