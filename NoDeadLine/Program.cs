@@ -30,13 +30,9 @@ class Program
          static void Main(string[] args)
     {
         
-        HardwareInfo hardware=new HardwareInfo();
-        hardware.StartCmd();
+       
 
-       NetworkInfo network=new NetworkInfo();
-       network.SaveFromCmd();
-
-        Installer.CheckNodeInstalled();
+        
         StartUp.GetStarted();
         Jobs = new List<Job>();
         //  _threads = new List<Thread>();

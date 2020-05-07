@@ -1,8 +1,9 @@
-﻿using System;
+﻿using NoDeadLine;
+using System;
 using System.Globalization;
 using System.IO;
- 
- 
+
+
 
 public class StartUp
 {
@@ -14,11 +15,19 @@ public class StartUp
 
     }
 
-private static void GetNetworkPoolInfo()
+    private static void GetNetworkPoolInfo()
     {
-        
+
     }
 
+    private static void HardwareInfoStartUp()
+    {
+        HardwareInfo hardware = new HardwareInfo();
+        hardware.StartCmd();
+
+        NetworkInfo network = new NetworkInfo();
+        network.SaveFromCmd();
+    }
 private static void CopyAddDirectoryImage()
     {
 
