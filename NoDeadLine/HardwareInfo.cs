@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 
@@ -11,27 +12,32 @@ namespace NoDeadLine
         private string fileName = "";
         public void StartCmd()
         {
-            System.Diagnostics.Process process = new System.Diagnostics.Process();
-            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-            startInfo.WorkingDirectory= @"C:\Windows\System32";
-            startInfo.FileName = @"C:\Windows\System32\cmd.exe"; 
-            fileName= DateTime.Now.ToString("yyyyMMddHHmmss");
-            startInfo.Arguments = @"/C " + "cd "+Directory.GetDirectories(FarmSettings.Root, "Resources")[0]+ "\\OpenHardwareMonitorReport"+" & "+"OpenHardwareMonitorReport.exe "+"> "+ fileName + ".txt";
-            process.StartInfo = startInfo;
-            
-            process.EnableRaisingEvents = true;
-            process.Exited += Process_Exited;
+            bool isWindows = System.Runtime.InteropServices.RuntimeInformation
+                .IsOSPlatform(OSPlatform.Windows);
+            if (isWindows)
+            {
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                startInfo.WorkingDirectory = @"C:\Windows\System32";
+                startInfo.FileName = @"C:\Windows\System32\cmd.exe";
+                fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + ".txt";
+                startInfo.Arguments = @"/C " + "cd " + FarmSettings.HardwareInfoCommandLine + " & " +
+                                      "OpenHardwareMonitorReport.exe " + "> " + fileName;
+                process.StartInfo = startInfo;
 
-            process.Start();
+                process.EnableRaisingEvents = true;
+                process.Exited += Process_Exited;
+
+                process.Start();
+            }
         }
 
 
         private void Process_Exited(object sender, EventArgs e)
         {
-            string pathStart = Directory.GetDirectories(FarmSettings.Root, "Resources")[0] +
-                               "\\OpenHardwareMonitorReport" + "\\" + fileName + ".txt";
-            string pathEnd = Program.DeadLineReportFolderWin + "\\" + fileName + ".txt";
+            string pathStart = FarmSettings.HardwareInfoCommandLine + "\\" + fileName;
+            string pathEnd = FarmSettings.DeadLineReportFolderWin + "\\" + fileName;
             try
             {
                 if (File.Exists(pathStart))

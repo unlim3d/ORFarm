@@ -35,10 +35,10 @@ public class Job
 	{
 		set
 		{
-			PreviewPath = Program.NodeWWW + Id.ToString()+"//";
-			ServerPreviewMovFilePath = Program.NodeWWW + Id.ToString()+"_"+ value + ".mov";
+			PreviewPath = FarmSettings.SitePath + Id.ToString()+"//";
+			ServerPreviewMovFilePath = FarmSettings.SitePath + Id.ToString()+"_"+ value + ".mov";
 			_RenderNameMask =value;
-			JsonPath = Program.NodeWWW + Id.ToString() + "_" + value + ".json";
+			JsonPath = FarmSettings.SitePath + Id.ToString() + "_" + value + ".json";
 			Program.Jobs.Add(this);
 			Console.WriteLine("\nВсего Джоб Обнаружено: " + Program.Jobs.Count);
 			Console.WriteLine("Новая джоба :" + _RenderNameMask);

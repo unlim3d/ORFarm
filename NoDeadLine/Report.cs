@@ -23,7 +23,7 @@ public class Report
         Stopwatch clock = Stopwatch.StartNew();
       
         List<string> strs = new List<string>();
-        strs.AddRange(Program.SearchFile(Program.DeadLineReportFolderSlaves, "*.bz2").ToList());
+        strs.AddRange(Program.SearchFile(FarmSettings.DeadLineReportFolderSlaves, "*.bz2").ToList());
         int c = 0;
         Console.WriteLine("Собираем репорты:" +strs.Count);
 

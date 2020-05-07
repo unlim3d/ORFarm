@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace NoDeadLine
@@ -14,26 +15,31 @@ namespace NoDeadLine
         private string fileName = "";
         public void SaveFromCmd()
         {
-            System.Diagnostics.Process process = new System.Diagnostics.Process();
-            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
-            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
-            startInfo.WorkingDirectory = @"C:\Windows\System32";
-            startInfo.FileName = @"C:\Windows\System32\cmd.exe";
-            fileName = DateTime.Now.ToString("yyyyMMddHHmmss")+"Network";
-            startInfo.Arguments = @"/C " + "cd " + Directory.GetDirectories(FarmSettings.Root, "Resources")[0] + "\\NetworkSpeedTest" + " & " + "speedtest.exe " + "> " + fileName + ".json";
-            process.StartInfo = startInfo;
+            bool isWindows = System.Runtime.InteropServices.RuntimeInformation
+                .IsOSPlatform(OSPlatform.Windows);
+            if (isWindows)
+            {
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                startInfo.WorkingDirectory = @"C:\Windows\System32";
+                startInfo.FileName = @"C:\Windows\System32\cmd.exe";
+                fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + "Network" + ".json";
+                startInfo.Arguments = @"/C " + "cd " + FarmSettings.NetworkInfoCommandLine + " & " + "speedtest.exe " +
+                                      "> " + fileName;
+                process.StartInfo = startInfo;
 
-            process.EnableRaisingEvents = true;
-            process.Exited += Process_Exited;
+                process.EnableRaisingEvents = true;
+                process.Exited += Process_Exited;
 
-            process.Start();
+                process.Start();
+            }
         }
 
         private void Process_Exited(object sender, EventArgs e)
         {
-            string pathStart = Directory.GetDirectories(FarmSettings.Root, "Resources")[0] +
-                               "\\NetworkSpeedTest" + "\\" + fileName + ".json";
-            string pathEnd = Program.DeadLineReportFolderWin + "\\" + fileName + ".json";
+            string pathStart = FarmSettings.NetworkInfoCommandLine + "\\" + fileName;
+            string pathEnd = FarmSettings.DeadLineReportFolderWin + "\\" + fileName ;
             try
             {
                 if (File.Exists(pathStart))

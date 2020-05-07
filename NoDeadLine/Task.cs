@@ -52,7 +52,7 @@ public class RenderTask
    
    public static string GetServerPreviewFileNameByOriginalFileName(  string value)
     {
-             string str = Program.NodeWWW + Path.GetFileNameWithoutExtension(value);
+             string str = FarmSettings.SitePath + Path.GetFileNameWithoutExtension(value);
              
             str = str.Replace(@"\\", @"\");
         return   str+".jpg";
