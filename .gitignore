@@ -1,9 +1,10 @@
 /node_modules
-/routing/node_modules
-/routing/package-lock.json
-/routing/.idea
-/Site
+/web_server/node_modules
+/web_server/package-lock.json
+/web_server/.idea
+/web_server/Site
 /.idea
+package-lock.json
 *.dll
 *.pdb
 *.suo

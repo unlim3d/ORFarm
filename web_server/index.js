@@ -3,8 +3,6 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express_handler = require('./express_handler');
 
-
-
 // noinspection JSPotentiallyInvalidConstructorUsage
 const app = new express();
 
