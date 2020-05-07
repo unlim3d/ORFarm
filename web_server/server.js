@@ -7,7 +7,7 @@ const Start = async function (){
     promises.push(await utils.Exec('npm list ejs || npm install ejs --save'));
     await Promise.all(promises);
     console.log("Checking modules Finished.");
-    const routing = require('./web_server');
+    const routing = require('./index');
 };
 
 Start();
