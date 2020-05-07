@@ -105,19 +105,6 @@ video_test.muted = true;
 video_test.loop = true;
 video_test.src = 'http://127.0.0.1:8089/files?filename=Storage_v2_..mov';
 
-const GetVideoFrame = function (video, options = {}){
-    const canvas = document.createElement('canvas');
-    options.width = options.width || video.videoWidth;
-    options.height = video.videoHeight * options.width / video.videoWidth;
-    canvas.height = options.height;
-    canvas.width = options.width;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    const img = new Image();
-    img.src = canvas.toDataURL();
-    return img;
-};
-
 const MakeProgramRequest = async function(options){
     const address = 'http://localhost:8090';
     const xhr = new XMLHttpRequest();
@@ -137,52 +124,6 @@ const MakeProgramRequest = async function(options){
     xhr.send(JSON.stringify(options.body));
 };
 
-const GetVideoDuration = function(file){
-    return new Promise((resolve) => {
-        const video = document.createElement('video');
-        video.preload = 'metadata';
-
-        video.onloadedmetadata = function() {
-            window.URL.revokeObjectURL(video.src);
-            const duration = video.duration;
-            resolve(duration);
-        }
-
-        video.src = URL.createObjectURL(file);;
-    });
-};
-
 $(document).ready(async function() {
-    //BuildPage();
-
-    $('#seconds_field').change(() =>{
-        video_test.currentTime = parseFloat($('#seconds_field').val());
-        video_test.play();
-    });
-
-    video_test.ontimeupdate = () => {
-        const image = GetVideoFrame();
-        $('img')[0].src = image.src;
-        $('a[download="filename.png"]').attr('href', image.src);
-    };
-
-    $('#video_input').change(async function (e){
-        const file = $('#video_input')[0].files[0];
-        const duration = await GetVideoDuration(file);
-        const sliced_file = file.slice(0, file.size / duration / 2);
-        const url = URL.createObjectURL(sliced_file);
-        const video = document.createElement('video');
-        video.autoplay = false;
-        video.muted = true;
-        video.loop = true;
-        video.src = url;
-        video.onloadeddata = () => {
-            video.currentTime = 0;
-            video.onseeked = () => {
-                const frame = GetVideoFrame(video, {width: 480});
-                $('#frames_container')[0].appendChild(frame);
-                URL.revokeObjectURL(url);
-            };
-        };
-    });
+    BuildPage();
 });
