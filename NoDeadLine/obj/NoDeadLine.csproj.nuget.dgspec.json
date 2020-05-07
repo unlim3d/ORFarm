@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Professional\\Documents\\GitHub\\ORFarm\\NoDeadLine\\NoDeadLine.csproj": {}
+    "C:\\ORFarm\\NoDeadLine\\NoDeadLine.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Professional\\Documents\\GitHub\\ORFarm\\NoDeadLine\\NoDeadLine.csproj": {
+    "C:\\ORFarm\\NoDeadLine\\NoDeadLine.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Professional\\Documents\\GitHub\\ORFarm\\NoDeadLine\\NoDeadLine.csproj",
+        "projectUniqueName": "C:\\ORFarm\\NoDeadLine\\NoDeadLine.csproj",
         "projectName": "NoDeadLine",
-        "projectPath": "C:\\Users\\Professional\\Documents\\GitHub\\ORFarm\\NoDeadLine\\NoDeadLine.csproj",
-        "packagesPath": "C:\\Users\\Professional\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Professional\\Documents\\GitHub\\ORFarm\\NoDeadLine\\obj\\",
+        "projectPath": "C:\\ORFarm\\NoDeadLine\\NoDeadLine.csproj",
+        "packagesPath": "C:\\Users\\V1\\.nuget\\packages\\",
+        "outputPath": "C:\\ORFarm\\NoDeadLine\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Professional\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\V1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
