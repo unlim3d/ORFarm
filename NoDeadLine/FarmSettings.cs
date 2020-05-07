@@ -12,13 +12,20 @@ using System.IO;
     {
         get
         {
-            return Path.Combine("..",Directory.GetCurrentDirectory());
+            string rootPath= Path.Combine("..", Directory.GetCurrentDirectory());
+            rootPath.Replace("\\NoDeadLine", "");
+            return rootPath;
         }
     }
         public static string SitePath
         {
             get
             {
+                string tempDirectory = Path.Combine(Root, "Site");
+                if (!Directory.Exists(tempDirectory))
+                {
+                    Directory.CreateDirectory(tempDirectory);
+                }
                 return  Directory.GetDirectories(Root, "Site")[0];
             }
         }
