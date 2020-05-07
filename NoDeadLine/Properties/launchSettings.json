@@ -2,7 +2,7 @@
   "profiles": {
     "NoDeadLine": {
       "commandName": "Project",
-      "workingDirectory": "C:\\ORFarm",
+      "workingDirectory": "C:\\Users\\Professional\\Documents\\GitHub\\ORFarm",
       "nativeDebugging": true
     }
   }
