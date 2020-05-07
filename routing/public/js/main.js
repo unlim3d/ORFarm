@@ -59,6 +59,8 @@ const BuildPage = function () {
             button_save_collect_path.onclick = () => MakeProgramRequest({name: 'SetCollectFolder', body: {sequence: sequences[i], path:  text_field_collect_path.value}});
             td.appendChild(button_save_collect_path);
 
+           
+
             tr.appendChild(td);
             table.appendChild(tr);
         }
