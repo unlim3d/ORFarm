@@ -15,7 +15,7 @@ public class FarmSettings
 
     public static void RootPath()
     {
-        if (Directory.GetFiles(Root, "server.js").Length > 0)
+        if (Directory.GetDirectories(Root, "NoDeadLine").Length > 0)
         {
             Root = Root;
 
@@ -27,17 +27,44 @@ public class FarmSettings
         }
         
     }
+
+    public static string WebServer
+    {
+        get
+        {
+            string tempDirectory = Directory.GetDirectories(Root, "web_server")[0];
+            if (!Directory.Exists(tempDirectory))
+            {
+                Console.WriteLine("Kapec");
+
+            }
+            return tempDirectory;
+        }
+    }
+
+    public static string Resources
+    {
+        get
+        {
+            string tempDirectory=Path.Combine(SitePath, "Resources");
+            if (!Directory.Exists(tempDirectory))
+            {
+                Directory.CreateDirectory(tempDirectory);
+            }
+            return tempDirectory;
+        }
+    }
     public static string SitePath
     {
         get
         {
-            string tempDirectory = Path.Combine(Root, "Site");
+            string tempDirectory = Path.Combine(WebServer, "Site");
             if (!Directory.Exists(tempDirectory))
             {
                 Directory.CreateDirectory(tempDirectory);
             }
 
-            return Directory.GetDirectories(Root, "Site")[0];
+            return Directory.GetDirectories(WebServer, "Site")[0];
         }
     }
 
@@ -45,13 +72,13 @@ public class FarmSettings
     {
         get
         {
-            string tempDirectory = Directory.GetDirectories(Root, "BaseDesignElements")[0];
+            string tempDirectory = Path.Combine(Resources, "BaseDesignElements");//Directory.GetDirectories(WebServer, "BaseDesignElements")[0];
             if (!Directory.Exists(tempDirectory))
             {
                 Directory.CreateDirectory(tempDirectory);
             }
 
-            return Directory.GetDirectories(Root, "BaseDesignElements")[0];
+            return Directory.GetDirectories(Resources, "BaseDesignElements")[0];
         }
     }
 
@@ -90,8 +117,8 @@ public class FarmSettings
         get
         {
 
-            string pathRoot = FarmSettings.Root;
-            string path = Path.Combine(pathRoot, "reports");
+            string pathRoot = SitePath;
+            string path = Path.Combine(pathRoot, "Reports");
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -103,12 +130,28 @@ public class FarmSettings
 
     public static string HardwareInfoCommandLine
     {
-        get { return Directory.GetDirectories(FarmSettings.Root, "Resources")[0] + "\\OpenHardwareMonitorReport"; }
+        get
+        {
+            string tempDirectory = Path.Combine(Resources, "OpenHardwareMonitorReport");
+            if(!Directory.Exists(tempDirectory))
+            {
+                Directory.CreateDirectory(tempDirectory);
+            }
+            return tempDirectory;
+        }
     }
 
     public static string NetworkInfoCommandLine
     {
-        get { return Directory.GetDirectories(FarmSettings.Root, "Resources")[0] + "\\NetworkSpeedTest"; }
+        get
+        {
+            string tempDirectory = Path.Combine(Resources, "NetworkSpeedTest");
+            if (!Directory.Exists(tempDirectory))
+            {
+                Directory.CreateDirectory(tempDirectory);
+            }
+            return tempDirectory;
+        }
     }
 
     public static string FFMPEG
