@@ -108,7 +108,7 @@ const Wait = function (timeout) {
 };
 
 const MakeProgramRequest = async function(options){
-    const address = 'http://localhost:8090';
+    const address = 'http://127.0.0.1:8090';
     const xhr = new XMLHttpRequest();
 
     options.method = options.method || 'POST';
