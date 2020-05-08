@@ -23,6 +23,6 @@
     width: 90%;
     height: 2em;
 }
-#table .text{
+#table input[type="text"]{
     width: 90%;
 }

@@ -32,10 +32,18 @@ const BuildPage = function () {
                 td.appendChild(video);
             }
 
+            const path_field = document.createElement('input');
+            path_field.setAttribute('type', 'text');
+            td.appendChild(path_field);
+
             const button_save = document.createElement('button');
             button_save.setAttribute('class', 'save_btn');
             button_save.innerText = 'Set save path';
-            button_save.onclick = () => MakeProgramRequest({name: 'SetRenderFolder', body: {sequence: sequences[i]}});
+            button_save.onclick = () => {
+                const body = {sequence: sequences[i]};
+                if (path_field.value) body.path = path_field.value;
+                MakeProgramRequest({name: 'SetRenderFolder', body: body});
+            };
             td.appendChild(button_save);
 
             tr.appendChild(td);
