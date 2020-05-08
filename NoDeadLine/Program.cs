@@ -52,7 +52,7 @@ class Program
         { 
             Report. CreaterReports();
             Job.FindVrayRGBColorRenderMask(Path.GetFullPath("C://Dropbox//"));
-            Job.FindVrayRGBColorRenderMask(Path.GetFullPath("r://"));
+            Job.FindVrayRGBColorRenderMask(Path.GetFullPath("r://Mars//"));
 
 
 
