@@ -170,7 +170,16 @@ public class FarmSettings
     }
      public static string JobsDirectory
     {
-        get { return Directory.GetDirectories(Resources, "Jobs")[0]; }
+        get
+        {
+            string[] tempDirectory = Directory.GetDirectories(SitePath, "Jobs");
+            if(tempDirectory.Length==0) 
+            {
+                Directory.CreateDirectory(Path.Combine(SitePath, "Jobs"));
+            }
+            return Directory.GetDirectories(SitePath, "Jobs")[0];
+        }
+
     }
 }
  
