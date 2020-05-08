@@ -51,12 +51,14 @@ class Program
         while (true)
         { 
             Report. CreaterReports();
-           
+            Job.FindVrayRGBColorRenderMask(Path.GetFullPath("C://Dropbox//"));
+            Job.FindVrayRGBColorRenderMask(Path.GetFullPath("r://"));
 
-             
-                
-            
-         
+
+
+
+
+
             while (Operations.Count > 0)
             {
                 Thread newThread = new Thread(RunOperation);
@@ -133,7 +135,7 @@ class Program
     public static string RunFFMpeg(string parametres)
     {
         ChangedCountFiles++;
-        ProcessStartInfo oInfo = new ProcessStartInfo(FarmSettings.FFMPEG, parametres);
+        ProcessStartInfo oInfo = new ProcessStartInfo(FarmSettings.FFMPEGexe, parametres);
         oInfo.UseShellExecute = false;
         oInfo.CreateNoWindow = true;
 

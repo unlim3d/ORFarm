@@ -17,8 +17,7 @@ public class ListenerCommand
             return;
         }
 
-         string[] prefixes = { "http://127.0.0.1:8090/", "http://nodeadline.mykeenetic.com:8090/"}; 
-      //   string[] prefixes = { "http://127.0.0.1:8090" ,  };
+         string[] prefixes = { "http://127.0.0.1:8090/", "http://nodeadline.mykeenetic.com:8090/"};
 
         // Create a listener.
         HttpListener listener = new HttpListener();

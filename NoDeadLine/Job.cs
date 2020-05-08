@@ -181,7 +181,7 @@ public class Job
 	 static void SaveJobJson(Job job)
 	{
 		string output = JsonConvert.SerializeObject(job);
-		File.WriteAllText(job.RenderNameMask + ".json", output);
+		File.WriteAllText(Path.Combine(FarmSettings.JobsDirectory, job.RenderNameMask + ".json"), output);
 		Console.ForegroundColor = ConsoleColor.DarkGreen;
 		Console.WriteLine("\nЗаписываем JsonJob: " + job.RenderNameMask);
 		Console.ForegroundColor = ConsoleColor.White;
@@ -204,6 +204,24 @@ public class Job
 		Program.RunFFMpeg(tmp);
 
 		
+
+
+		return null;
+	}
+
+	public static string FindVrayRGBColorRenderMask(string path)
+	{
+	string[] str =	Directory.GetFiles(path, "*RGB_color.*", SearchOption.AllDirectories);
+		List<string> UniquePaths = new List<string>();
+		for (int i = 0; i < str.Length; i++)
+		{
+			string temp = str[i].Substring(0, str[i].Length - 8);
+			if (!UniquePaths.Contains(temp))
+			{
+				UniquePaths.Add(temp);
+				CheckJobName(str[i]);
+			}
+		}
 
 
 		return null;

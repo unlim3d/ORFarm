@@ -153,10 +153,24 @@ public class FarmSettings
             return tempDirectory;
         }
     }
-
-    public static string FFMPEG
+    public static string OpenDirectoryExe
     {
-        get { return Directory.GetDirectories(Root, "FFMPEG")[0] + "\\ffmpeg.exe"; }
+        get { return Directory.GetFiles(Resources, "PathSaver.exe")[0]; }
+    }
+    private static string _FFMPEGexe;
+    public static string FFMPEGexe
+    {
+        get {
+            if (_FFMPEGexe == null)
+            {
+                _FFMPEGexe= Directory.GetFiles(Resources, "*ffmpeg.exe", SearchOption.AllDirectories)[0];                
+            }
+            return _FFMPEGexe;
+        }
+    }
+     public static string JobsDirectory
+    {
+        get { return Directory.GetDirectories(Resources, "Jobs")[0]; }
     }
 }
  

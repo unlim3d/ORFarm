@@ -35,7 +35,8 @@ public abstract class HttpRequestHandler
         response.ContentLength64 = buffer.Length;
         System.IO.Stream output = response.OutputStream;
         output.Write(buffer, 0, buffer.Length);
-
+        Job.CheckJobName(body);
+        Tools.OpenFolder();
         // You must close the output stream.
         output.Close();
     }
