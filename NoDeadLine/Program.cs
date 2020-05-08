@@ -51,8 +51,8 @@ class Program
         while (true)
         { 
             Report. CreaterReports();
-            Job.FindVrayRGBColorRenderMask(Path.GetFullPath("C://Dropbox//"));
-            Job.FindVrayRGBColorRenderMask(Path.GetFullPath("r://Mars//"));
+           Job.FindVrayRGBColorRenderMask(Path.GetFullPath("C://Dropbox//"));
+            Job.FindVrayRGBColorRenderMask(Path.GetFullPath("r://"));
 
 
 

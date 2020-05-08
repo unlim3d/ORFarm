@@ -9,3 +9,4 @@
 *.pdb
 *.suo
 *.cache
+*cache

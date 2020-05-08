@@ -78,7 +78,7 @@ public class Job
 				Joba.ExistingFiles = Program.SearchFile(Joba.RenderPath, "*" + Joba.RenderNameMask + "*");
 
 				Joba.Id = Program.Jobs.Count;
-
+				SaveJobJson(Joba);
 				TryParseOtherFrames(Joba);
 			}
 		}
@@ -211,26 +211,44 @@ public class Job
 
 	public static string FindVrayRGBColorRenderMask(string path)
 	{
-		try
+
+		string[] strs = Directory.GetDirectories(path);
+		List<string> checkedstr= new List<string>();
+		for (int i = 0; i < strs.Length; i++)
 		{
-			string[] str = Directory.GetFiles(path, "*RGB_color.*", SearchOption.AllDirectories);
-		
-		
+			if (!strs[i].Contains("System Volume Information") && (!strs[i].Contains("RECYCLE.BIN")) && (!strs[i].Contains("web_server"))) 
+				checkedstr.Add(strs[i]);
+			 
+			 
+			 
+		 
+		}
+
 		List<string> UniquePaths = new List<string>();
-		for (int i = 0; i < str.Length; i++)
+		for (int i = 0; i < checkedstr.Count; i++)
 		{
-			string temp = str[i].Substring(0, str[i].Length - 8);
-			if (!UniquePaths.Contains(temp))
+			string[] str = Directory.GetFiles(checkedstr[i], "*RGB_color.*", SearchOption.AllDirectories);
+
+			if(str.Length!=0)
+			for (int j = 0; j < str.Length; j++)
 			{
-				UniquePaths.Add(temp);
-				CheckJobName(str[i]);
+				string temp = str[j].Substring(0, str[j].Length - 8);
+				if (!UniquePaths.Contains(temp))
+				{
+					UniquePaths.Add(temp);
+					CheckJobName(str[j]);
+				}
 			}
 		}
-		}
-		catch
-		{
+	
+		
+		 
 
-		}
+
+		
+		
+		 
+	 
 
 		return null;
 	}
