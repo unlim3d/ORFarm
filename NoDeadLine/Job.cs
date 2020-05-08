@@ -154,7 +154,7 @@ public class Job
 			else
 			{
 
-				if (SequenceCounter > 0)
+				if (SequenceCounter > 1)
 				{
 					if (job.LastMovFramesCounter != j)
 					{
@@ -181,7 +181,7 @@ public class Job
 	 static void SaveJobJson(Job job)
 	{
 		string output = JsonConvert.SerializeObject(job);
-		File.WriteAllText(job.RenderNameMask + ".json", output);
+		File.WriteAllText(Path.Combine(FarmSettings.JobsDirectory, job.RenderNameMask + ".json"), output);
 		Console.ForegroundColor = ConsoleColor.DarkGreen;
 		Console.WriteLine("\nЗаписываем JsonJob: " + job.RenderNameMask);
 		Console.ForegroundColor = ConsoleColor.White;
@@ -193,7 +193,7 @@ public class Job
 		string filemask = Path.GetFileNameWithoutExtension(path);
 		filemask = filemask.Substring(0, filemask.Length - 4);
 		string output = RenderTask.GetServerPreviewFileNameByOriginalFileName( filemask);
-		output = output.Substring(0, output.Length - 3)+".mov ";
+		output = (output.Substring(0, output.Length - 3))+".mov ";
 		path = path.Substring(0, output.Length -5) + "%04d.jpg";
 		path = " -i " + path + " " + output;
 		string offset = " -start_number " + job.MinimumFrameRendered;
@@ -205,6 +205,32 @@ public class Job
 
 		
 
+
+		return null;
+	}
+
+	public static string FindVrayRGBColorRenderMask(string path)
+	{
+		try
+		{
+			string[] str = Directory.GetFiles(path, "*RGB_color.*", SearchOption.AllDirectories);
+		
+		
+		List<string> UniquePaths = new List<string>();
+		for (int i = 0; i < str.Length; i++)
+		{
+			string temp = str[i].Substring(0, str[i].Length - 8);
+			if (!UniquePaths.Contains(temp))
+			{
+				UniquePaths.Add(temp);
+				CheckJobName(str[i]);
+			}
+		}
+		}
+		catch
+		{
+
+		}
 
 		return null;
 	}
